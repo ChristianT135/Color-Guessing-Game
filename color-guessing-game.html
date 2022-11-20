@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            Color Guessing Game 
+        </title>
+    </head>
+    <body>
+        <h1>
+            Color Guessing Game
+        </h1>
+        <button type="button" onclick="runGame()">Start Game</button>
+        <Script>
+
+            const COLORS_ARRAY =[
+                'blue',
+                'cyan', 
+                'gold' , 
+                'gray' , 
+                'green',
+                'magenta', 
+                'orange', 
+                'red', 
+                'white', 
+                'yellow'
+            ] ;
+            
+            
+
+            function runGame() {
+
+                let guess = ""; 
+                let correct = false;
+                let numTries = 0;
+
+                const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
+                const target = COLORS_ARRAY[targetIndex];
+
+                
+
+                do{
+                    guess = prompt("I am thinking of one of these colors\n\n" + COLORS_ARRAY.join(', ') + "\n\n\What color am I thinking of?\n");
+                     if (guess === null){
+                        alert("The game has been aborted.\n\nTry Again!")
+                        return;
+                         }
+                        correct = checkGuess(guess,target);
+                        numTries += 1;
+                    }while(!correct);
+
+                    document.body.style.background = guess;
+                    
+                alert("Congratulations, your a Genius. It took you " + numTries + " guesses!\n\nClick Ok or Hit enter to see the color")
+
+                
+
+            } 
+
+
+            function checkGuess(guess,target){
+                
+                let correct= false;
+
+                if(!COLORS_ARRAY.includes(guess)){
+
+                    alert("You have not entered a color from the following list. \n\nPlease choose a color from the list and try again.");
+
+                }else if (guess > target){
+                    alert('Your close, But choose a color lower in the list.');
+                }else if (guess < target) {
+                    alert('Your close, But choose a color higher in the list.');
+                }else {
+                    correct= true;
+                }
+                
+            return correct;}
+
+
+        </Script>
+
+
+    </body>
+
+
+</html>
